@@ -1,5 +1,7 @@
 # Crucible Live Bridge & VFX Toolkit
 
+![Crucible VFX Toolkit - Light Mixer](Crucible/screenshots/Screenshot1.png)
+
 Professional Nuke VFX Toolkit for feature-film and episodic VFX compositing pipelines.
 
 **📚 [Click Here to View the Walkthrough Tutorial PDF](Crucible/Crucible_Walkthrough_Tutorial.pdf)**
