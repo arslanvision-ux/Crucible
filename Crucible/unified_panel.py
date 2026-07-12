@@ -7,18 +7,24 @@ Provides a unified, PySide-based interface for all Crucible tools
 
 import os
 import sys
-
-# Attempt to import PySide2 or PySide6 depending on Nuke version
-try:
-    from PySide2 import QtWidgets, QtCore, QtGui
-except ImportError:
-    try:
-        from PySide6 import QtWidgets, QtCore, QtGui
-    except ImportError:
-        pass
-
 import nuke
 import nukescripts
+
+# Attempt to import PySide6 or PySide2 depending on Nuke version
+try:
+    if nuke.NUKE_VERSION_MAJOR >= 15:
+        from PySide6 import QtWidgets, QtCore, QtGui
+    else:
+        from PySide2 import QtWidgets, QtCore, QtGui
+except Exception:
+    # Fallback to the other if the primary fails (e.g. NumPy version mismatch)
+    try:
+        if nuke.NUKE_VERSION_MAJOR >= 15:
+            from PySide2 import QtWidgets, QtCore, QtGui
+        else:
+            from PySide6 import QtWidgets, QtCore, QtGui
+    except Exception:
+        pass
 
 from .constants import UI_COLORS, LIGHT_MIXER_MIN, LIGHT_MIXER_MAX, LIGHT_MIXER_DEFAULT
 from .aov_builder.channel_parser import parse_channels
